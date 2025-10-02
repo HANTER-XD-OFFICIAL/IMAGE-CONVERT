@@ -221,8 +221,8 @@ if(contactForm){
   contactForm.addEventListener("submit", function(e){
     e.preventDefault();
     // REQUIRED: replace these with your EmailJS service/template ids
-    const SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
-    const TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
+    const SERVICE_ID = "service_jcczpsg";
+    const TEMPLATE_ID = "template_6hagzbs";
 
     const params = {
       from_name: document.getElementById("contact_name").value,
