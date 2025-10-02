@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+}
+
+.container { text-align: center; padding: 20px; }
+
+h1 { font-size: 2rem; }
+.accent { color: #0a84ff; }
+
+input, select, button { margin: 10px; padding: 10px; font-size: 1rem; }
+
+button { background: #0a84ff; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+button:disabled { background: #999; cursor: not-allowed; }
+
+.progress-container {
+  width: 80%; margin: 10px auto; background: #ddd; border-radius: 5px; overflow: hidden;
+}
+.progress-bar {
+  height: 10px; width: 0; background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+}
+.progress-text { display: block; text-align: center; margin-top: 5px; }
+
+.before-after { display: flex; justify-content: center; gap: 20px; margin: 20px; flex-wrap: wrap; }
+.image-container { text-align: center; }
+.image-container img { max-width: 300px; border: 1px solid #ccc; border-radius: 8px; }
+
+.help-center { padding: 20px; background: #eee; text-align: center; }
+.help-center ul { list-style: none; padding: 0; }
+.help-center li { margin: 5px; }
+
+.auth-box { padding: 20px; text-align: center; background: #f1f1f1; margin: 20px; border-radius: 10px; }
+.auth-buttons { margin: 10px 0; }
+
+.user-history { padding: 20px; }
+.history-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 10px; background: #fff; }
+.history-images { display: flex; gap: 10px; }
+.history-images img { width: 150px; border-radius: 8px; }
