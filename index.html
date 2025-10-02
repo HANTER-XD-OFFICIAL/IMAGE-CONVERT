@@ -1,73 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RASEL Premium Image Enhancer</title>
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase -->
+  <!-- Firebase SDKs (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+  <!-- EmailJS (for contact form) -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <!-- Your firebase config (must be present before script.js) -->
   <script src="firebase-config.js"></script>
+
+  <!-- initialize EmailJS (replace PUBLIC_KEY) -->
+  <script>
+    (function(){
+      // REPLACE "YOUR_EMAILJS_PUBLIC_KEY" with your EmailJS public key
+      if (window.emailjs) {
+        try { emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); } catch(e) { console.warn("EmailJS init error", e); }
+      }
+    })();
+  </script>
 </head>
 <body>
   <main class="page">
     <div class="container">
       <h1>📸 RASEL <span class="accent">Premium</span> Image Enhancer</h1>
 
-      <!-- Auth Box -->
+      <!-- AUTH BOX (optional) -->
       <div class="auth-box">
-        <input type="email" id="emailInput" placeholder="Enter Email">
-        <input type="password" id="passwordInput" placeholder="Enter Password">
-        <button onclick="signupEmail()">Sign Up</button>
-        <button onclick="loginEmail()">Login</button>
-        <button onclick="loginGoogle()">Login with Google</button>
+        <input id="emailInput" type="email" placeholder="Email (for account)" />
+        <input id="passwordInput" type="password" placeholder="Password" />
+        <div class="auth-buttons">
+          <button id="signupBtn">Sign Up</button>
+          <button id="loginBtn">Login</button>
+          <button id="googleBtn">Login with Google</button>
+        </div>
         <p id="authStatus"></p>
       </div>
 
-      <!-- Upload Section -->
-      <input type="file" id="upload" accept="image/*"><br>
+      <!-- Upload -->
+      <div class="controls">
+        <input id="upload" type="file" accept="image/*" />
+        <label for="resolution">Select Conversion</label>
+        <select id="resolution">
+          <option value="3840x2160">4K (3840×2160)</option>
+          <option value="7680x4320">8K (7680×4320)</option>
+          <option value="15360x8640">16K</option>
+          <option value="30720x17280">32K</option>
+          <option value="61440x34560">64K</option>
+          <option value="96000x54000">100K</option>
+        </select>
 
-      <label for="resolution">Select Conversion</label>
-      <select id="resolution">
-        <option value="3840x2160">4K</option>
-        <option value="7680x4320">8K</option>
-        <option value="15360x8640">16K</option>
-        <option value="30720x17280">32K</option>
-        <option value="61440x34560">64K</option>
-        <option value="96000x54000">100K</option>
-      </select>
+        <div class="buttons">
+          <button id="convert" disabled>⚡ ENHANCE & CONVERT</button>
+          <button id="download" disabled>⬇️ DOWNLOAD</button>
+        </div>
 
-      <div class="buttons">
-        <button id="convert" disabled>⚡ Enhance & Convert</button>
-        <button id="download" disabled>⬇️ Download</button>
+        <!-- Progress -->
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar"></div>
+          <span id="progressText" class="progress-text">0%</span>
+        </div>
       </div>
 
-      <!-- Progress Bar -->
-      <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-        <span class="progress-text" id="progressText">0%</span>
-      </div>
-
-      <!-- Only After Image -->
+      <!-- AFTER ONLY preview -->
       <div class="after-only">
         <h3>Enhanced</h3>
-        <img id="enhancedPreview" alt="Enhanced Image" />
+        <img id="enhancedPreview" alt="Enhanced preview will appear here" />
       </div>
-    </div>
 
-    <!-- User History -->
-    <section class="user-history">
-      <h2>Your Enhanced Images</h2>
-      <div id="historyContainer"></div>
-    </section>
+      <!-- Help / Contact (EmailJS) -->
+      <section class="help-center">
+        <h2>📞 Need Help? Contact Us</h2>
+        <form id="contactForm">
+          <input id="contact_name" type="text" placeholder="Your name" required />
+          <input id="contact_email" type="email" placeholder="Your email" required />
+          <textarea id="contact_message" placeholder="Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p id="formStatus"></p>
+
+        <div class="contact-list">
+          <p>📧 <a href="mailto:alexraselchodhury@gmail.com">alexraselchodhury@gmail.com</a></p>
+          <p>💬 <a href="https://wa.me/8801882278234" target="_blank">WhatsApp: +8801882278234</a></p>
+          <p>🔗 <a href="https://www.facebook.com/MD.RASEL.8.2.3.4" target="_blank">Facebook</a></p>
+          <p>📨 <a href="https://t.me/HANTER_XD_OFFICIAL" target="_blank">Telegram: @HANTER_XD_OFFICIAL</a></p>
+        </div>
+      </section>
+
+      <!-- User History -->
+      <section class="user-history">
+        <h2>Your Enhanced Images</h2>
+        <div id="historyContainer"></div>
+      </section>
+    </div>
   </main>
 
   <canvas id="canvas" style="display:none;"></canvas>
+
+  <!-- App Script -->
   <script src="script.js"></script>
 </body>
 </html>
