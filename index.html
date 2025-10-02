@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASEL Premium Image Enhancer</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+</head>
+<body>
+
+<main class="page">
+  <div class="container">
+    <h1>📸 RASEL <span class="accent">Premium</span> Image Enhancer</h1>
+
+    <div class="controls">
+      <input type="file" id="upload" accept="image/*"><br>
+
+      <label for="resolution">Select Conversion</label>
+      <select id="resolution">
+        <option value="3840x2160">4K</option>
+        <option value="7680x4320">8K</option>
+        <option value="15360x8640">16K</option>
+        <option value="30720x17280">32K</option>
+        <option value="61440x34560">64K</option>
+        <option value="96000x54000">100K</option>
+      </select>
+
+      <div class="buttons">
+        <button id="convert" disabled>⚡ ENHANCE & CONVERT</button>
+        <button id="download" disabled>⬇️ DOWNLOAD</button>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <span class="progress-text" id="progressText">0%</span>
+      </div>
+    </div>
+
+    <!-- Before / After -->
+    <div class="before-after">
+      <div class="image-container">
+        <h3>Original</h3>
+        <img id="originalPreview" />
+      </div>
+      <div class="image-container">
+        <h3>Enhanced</h3>
+        <img id="enhancedPreview" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Poster -->
+  <section class="poster">
+    <h2>What this tool does</h2>
+    <p>Simple — Safe — Professional. Ratio intact, only enhancement applied.</p>
+  </section>
+
+  <!-- Auth Box -->
+  <section class="auth-box">
+    <h2>Optional Account</h2>
+    <p>You can enhance images without login.  
+       But if you want to save and view your history, create an account.</p>
+
+    <input type="email" id="emailInput" placeholder="Enter Gmail" />
+    <input type="password" id="passwordInput" placeholder="Enter Password" />
+
+    <div class="auth-buttons">
+      <button onclick="signupEmail()">Sign Up</button>
+      <button onclick="loginEmail()">Login</button>
+      <button onclick="loginGoogle()">Login with Google</button>
+    </div>
+
+    <p id="authStatus"></p>
+  </section>
+
+  <!-- Help Center -->
+  <section class="help-center">
+    <h2>📞 Need Help?</h2>
+    <ul>
+      <li><a href="mailto:alexraselchodhury@gmail.com">📧 Gmail</a></li>
+      <li><a href="https://wa.me/01882278234">💬 WhatsApp</a></li>
+      <li><a href="https://www.facebook.com/MD.RASEL.8.2.3.4">🔗 Facebook</a></li>
+    </ul>
+  </section>
+
+  <!-- User History -->
+  <section class="user-history">
+    <h2>Your Enhanced Images</h2>
+    <div id="historyContainer"></div>
+  </section>
+</main>
+
+<canvas id="canvas" style="display:none;"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
