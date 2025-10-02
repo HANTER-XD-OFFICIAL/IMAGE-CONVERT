@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
+  apiKey: AIzaSyDVEwu9dMrF4MVElT-1ZJFn5Taas7fe-Q8",
+  authDomain: coffee-spark-ai-barista-958e7.firebaseapp.com",
+  projectId: "coffee-spark-ai-barista-958e7",
+  storageBucket: "coffee-spark-ai-barista-958e7.firebasestorage.app",
+  messagingSenderId: "1011498496803",
+  appId: "1:1011498496803:web:cc0dcaae81deba6cce9296"
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
